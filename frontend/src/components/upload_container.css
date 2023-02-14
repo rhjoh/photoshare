@@ -1,0 +1,16 @@
+.upload-container {
+    border: 2px;
+    border-color: black;
+    margin-left: 50px;
+    top: 50px;
+    position: relative;
+    height: 200px;
+    width: 600px;
+    border-style: solid;
+}
+
+.upload-container .upload-container-text {
+    position: absolute;
+    bottom: 0px;
+    left: 10px;
+}

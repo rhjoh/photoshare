@@ -1,0 +1,55 @@
+.thumbs_main{
+    background-color: #005066;
+    padding-left: 200px;
+    height: 100vh;
+
+}
+
+.thumbnail-dropdown {
+    height: 100px;
+    width: 100px;
+    color: black;
+    position: absolute;
+    right: -25%;
+    visibility: hidden;
+    top: 16%;
+    background-color:snow
+}
+
+
+.thumbnail-container {
+    
+    position: relative;
+    height: 200px;
+    width: 200px;
+    margin-left: 75px;
+    margin-top: 75px;
+    display: inline-block;
+    overflow: visible;
+}
+
+.thumbnail-container img {
+    border-radius: 10%;
+    position: absolute;
+    object-fit: cover;
+    height: inherit;
+    width: inherit;
+}
+
+.thumbnail-container .p-left{
+    position: absolute;
+    display: inline-block;
+    top: 6%;
+    left: 6%;
+    color: white;
+    
+}
+
+.thumbnail-container .p-right {
+    position: absolute;
+    display:inline-block;
+    top: 6%;
+    right: 6%;
+    text-align: right;
+    color: white;
+}

@@ -1,0 +1,10 @@
+.editContainerMain{
+    border: 2px;
+    border-color: black;
+    margin-left: 50px;
+    top: 55px;
+    position: relative;
+    height: 200px;
+    width: 600px;
+    border-style: solid;
+}
