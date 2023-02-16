@@ -32,6 +32,7 @@ const corsOptions = {
   allowedHeaders: ["Content-Type"],
 };
 app.options("/update", cors(corsOptions));
+app.options('/delete', cors(corsOptions))
 
 app.get("/", (req, res) => {
   console.log("GET at /");
@@ -123,9 +124,23 @@ app.post("/update", bpJson, (req, res) => {
     "Access-Control-Allow-Origin": "http://localhost:3000",
   });
   res.send("Done");
+  
 });
+app.post('/delete', bpJson, (req, res) => {
+  const deleteQuery = "DELETE FROM photo_main WHERE id = ?"
+  console.log(req.body)
+    connection.query(
+    deleteQuery,
+    [req.body.id],
+    function (err, row, fields){
+      console.log(err)
+    }
+  )
+  res.set({
+    "Access-Control-Allow-Origin": "http://localhost:3000"
+  })
+  res.send('Done')
+})
 app.listen(8000, () => {
   console.log("Express listening on 8000");
 });
-
-// update photo_main set tagobj = "1234 - test"  where ID = 7;

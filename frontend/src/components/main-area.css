@@ -1,0 +1,9 @@
+.main-area-main {
+    border: 1px;
+    border-color: black;
+    border-style: solid;
+    height: 100vh;
+    width: 100vw;
+    padding-left: 200px;
+    background-color: 005066;
+}

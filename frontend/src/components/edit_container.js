@@ -7,20 +7,19 @@ function EditContainer(props) {
       id: props.editPhotoObject.id,
       imgTags: document.getElementById("tagsInput").value,
     };
-    console.log(uploadBody)
-    console.log(typeof(uploadBody))
+    console.log(uploadBody);
+    console.log(typeof uploadBody);
     fetch("http://localhost:8000/update", {
       method: "POST",
-      //mode: "no-cors",
       body: JSON.stringify(uploadBody),
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
     });
   }
 
-  return (
+  return Object.keys(props.editPhotoObject).length > 1 ? (
     <div className="editContainerMain">
       <p>Image title: {props.editPhotoObject.title}</p>
       <input type="text" placeholder="Edit title..." id="titleInput"></input>
@@ -30,7 +29,7 @@ function EditContainer(props) {
         Submit changes
       </button>
     </div>
-  );
+  ) : null;
 }
 
 export default EditContainer;

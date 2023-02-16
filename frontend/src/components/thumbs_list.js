@@ -1,6 +1,4 @@
 import "./thumbs_list.css";
-import UploadContainer from "./upload_container";
-import EditContainer from "./edit_container";
 import { useEffect, useState } from "react";
 
 function ThumbPic(props) {
@@ -11,6 +9,25 @@ function ThumbPic(props) {
     console.log(common);
     props.setEditPhotoObject(common);
   };
+
+  const deleteClicked = (common) => {
+    console.log("Deleting " , common.id)
+    // POST To /delete here. 
+    const deleteBody = {
+      id: common.id
+    }
+    fetch('http://localhost:8000/delete', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(deleteBody)
+    }).then(() => {
+      props.setPhotoAPICallState(!props.photoAPICallState)
+      console.log(props.photoAPICallState)
+    })
+  }
 
   return (
     <div className="thumbnail-container">
@@ -40,43 +57,40 @@ function ThumbPic(props) {
         >
           Edit
         </button>
-        <button style={{ width: "inherit" }}>Delete</button>
+        <button
+          style={{ width: "inherit" }}
+          onClick={() => deleteClicked(props.commonProps)}
+        >
+          Delete
+        </button>
       </div>
     </div>
   );
 }
 
-function ThumbsList() {
-  const [testState, setTestState] = useState(false);
-  const [photoData, setPhotoData] = useState([]);
-  const [editPhotoObject, setEditPhotoObject] = useState({});
-
-  useEffect(() => {
-    fetch("http://localhost:8000/photos")
-      .then((response) => response.json())
-      .then((json) => {
-        setPhotoData(json);
-      });
-  }, [testState]);
-
+function ThumbnailList(props) {
   return (
     <div className="thumbs_main">
-      {photoData.map((item, key) => (
+      <div className="search-main">
+        <input
+          id="searchbar"
+          type="text"
+          placeholder="Search"
+          className="search-input"
+        />
+      </div>
+      {props.photoData.map((item, key) => (
         <ThumbPic
           commonProps={item}
           key={key}
-          editPhotoObject={editPhotoObject}
-          setEditPhotoObject={setEditPhotoObject}
+          editPhotoObject={props.editPhotoObject}
+          setEditPhotoObject={props.setEditPhotoObject}
+          photoAPICallState={props.photoAPICallState}
+          setPhotoAPICallState={props.setPhotoAPICallState}
         />
       ))}
-      <UploadContainer
-        testState={testState}
-        setTestState={setTestState}
-        photoData={photoData}
-      />
-      <EditContainer editPhotoObject={editPhotoObject} />
     </div>
   );
 }
 
-export default ThumbsList;
+export default ThumbnailList;

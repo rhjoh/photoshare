@@ -1,10 +1,11 @@
 .editContainerMain{
-    border: 2px;
-    border-color: black;
+
+    background-color: #00607A;
     margin-left: 50px;
-    top: 55px;
-    position: relative;
+    margin-top: 25px;
     height: 200px;
-    width: 600px;
-    border-style: solid;
+    width: 450px;
+    position: absolute;
+    display: inline-block;
+    
 }
