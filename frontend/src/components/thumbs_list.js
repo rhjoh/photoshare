@@ -3,12 +3,11 @@ import { useEffect, useState } from "react";
 
 function ThumbPic(props) {
   const [optionsClicked, setOptionsClicked] = useState(false);
-  const [thumbImageClicked, setThumbImageClicked] = useState(false);
 
   const thumbnailClicked = (common) => {
+    props.setSelectedThumbnail(common);
     console.log(common);
-    console.log(thumbImageClicked)
-    setThumbImageClicked(!thumbImageClicked)
+    console.log(props.selectedThumbnail);
   };
   const editClicked = (common) => {
     console.log("Edit clicked");
@@ -18,7 +17,6 @@ function ThumbPic(props) {
 
   const deleteClicked = (common) => {
     console.log("Deleting ", common.id);
-    // POST To /delete here.
     const deleteBody = {
       id: common.id,
     };
@@ -37,8 +35,13 @@ function ThumbPic(props) {
 
   return (
     <div
-      className={thumbImageClicked ? "thumbnail-container-clicked" : "thumbnail-container"}
+      className={
+        props.commonProps.id === props.selectedThumbnail.id
+          ? "thumbnail-container-clicked"
+          : "thumbnail-container"
+      }
       onClick={() => thumbnailClicked(props.commonProps)}
+      id={props.commonProps.id}
     >
       <img
         src={`http://localhost:8000/photos/${props.commonProps.filename}`}
@@ -78,6 +81,7 @@ function ThumbPic(props) {
 }
 
 function ThumbnailList(props) {
+  const [selectedThumbnail, setSelectedThumbnail] = useState({});
   return (
     <div className="thumbs_main">
       <div className="search-main">
@@ -96,6 +100,8 @@ function ThumbnailList(props) {
           setEditPhotoObject={props.setEditPhotoObject}
           photoAPICallState={props.photoAPICallState}
           setPhotoAPICallState={props.setPhotoAPICallState}
+          selectedThumbnail={selectedThumbnail}
+          setSelectedThumbnail={setSelectedThumbnail}
         />
       ))}
     </div>
