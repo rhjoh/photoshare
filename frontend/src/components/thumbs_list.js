@@ -3,7 +3,13 @@ import { useEffect, useState } from "react";
 
 function ThumbPic(props) {
   const [optionsClicked, setOptionsClicked] = useState(false);
+  const [thumbImageClicked, setThumbImageClicked] = useState(false);
 
+  const thumbnailClicked = (common) => {
+    console.log(common);
+    console.log(thumbImageClicked)
+    setThumbImageClicked(!thumbImageClicked)
+  };
   const editClicked = (common) => {
     console.log("Edit clicked");
     console.log(common);
@@ -11,26 +17,29 @@ function ThumbPic(props) {
   };
 
   const deleteClicked = (common) => {
-    console.log("Deleting " , common.id)
-    // POST To /delete here. 
+    console.log("Deleting ", common.id);
+    // POST To /delete here.
     const deleteBody = {
-      id: common.id
-    }
-    fetch('http://localhost:8000/delete', {
-      method: 'POST',
+      id: common.id,
+    };
+    fetch("http://localhost:8000/delete", {
+      method: "POST",
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(deleteBody)
+      body: JSON.stringify(deleteBody),
     }).then(() => {
-      props.setPhotoAPICallState(!props.photoAPICallState)
-      console.log(props.photoAPICallState)
-    })
-  }
+      props.setPhotoAPICallState(!props.photoAPICallState);
+      console.log(props.photoAPICallState);
+    });
+  };
 
   return (
-    <div className="thumbnail-container">
+    <div
+      className={thumbImageClicked ? "thumbnail-container-clicked" : "thumbnail-container"}
+      onClick={() => thumbnailClicked(props.commonProps)}
+    >
       <img
         src={`http://localhost:8000/photos/${props.commonProps.filename}`}
         alt="alt_text"
