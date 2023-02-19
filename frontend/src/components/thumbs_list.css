@@ -5,7 +5,7 @@
 }
 
 .thumbnail-dropdown {
-    height: 100px;
+    height: 75px;
     width: 100px;
     color: black;
     position: absolute;
@@ -82,7 +82,7 @@
 .thumbnail-container .p-left{
     position: absolute;
     display: inline-block;
-    top: 6%;
+    top: 1%;
     left: 6%;
     color: white;
     
@@ -90,7 +90,7 @@
 .thumbnail-container-clicked .p-left{
     position: absolute;
     display: inline-block;
-    top: 6%;
+    top: 1%;
     left: 6%;
     color: white;
     
@@ -99,7 +99,7 @@
 .thumbnail-container .p-right {
     position: absolute;
     display:inline-block;
-    top: 6%;
+    top: 1%;
     right: 6%;
     text-align: right;
     color: white;
@@ -108,8 +108,15 @@
 .thumbnail-container-clicked .p-right {
     position: absolute;
     display:inline-block;
-    top: 6%;
+;
     right: 6%;
     text-align: right;
     color: white;
+}
+
+.svgClassTest{
+    top: 8%;
+    right: 10%;
+    display: inline-block;
+    position: absolute;
 }
