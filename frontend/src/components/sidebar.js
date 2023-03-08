@@ -29,6 +29,14 @@ function Sidebar(props) {
       iconName={"bi bi-heart"}
       // onclick load favourites
       />
+      <SidebarButton 
+      textValue={"Album 1"}
+      iconName={"bi bi-journals"}
+       />
+       <SidebarButton 
+      textValue={"Album 2"}
+      iconName={"bi bi-journals"}
+       />
     </div>
   );
 }
