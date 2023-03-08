@@ -16,11 +16,9 @@ function UploadContainer(props) {
       mode: "no-cors",
       body: uploadBody,
     }).then(() => {
-        console.log(props.photoAPICallState);
-    props.setPhotoAPICallState(!props.photoAPICallState);
-    })
-    /* console.log(props.photoAPICallState);
-    props.setPhotoAPICallState(!props.photoAPICallState); */
+      console.log(props.photoAPICallState);
+      props.setPhotoAPICallState(!props.photoAPICallState);
+    });
   };
 
   return (
@@ -36,8 +34,7 @@ function UploadContainer(props) {
         <button type="submit">Submit</button>
       </form>
       <div className="upload-container-text">
-        <>
-        </>
+        <></>
       </div>
     </div>
   );

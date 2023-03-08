@@ -1,12 +1,12 @@
 .sidebar-main {
-    background-color: #00303D;
+    background-color: #D1D1D6;
     width: 200px;
     height: 100%;
     position: absolute;
 }
 
 .sidebar-button {
-    color: white;
+    color: #BA55D3;
     text-align: center;
     font-size: larger;
     border-radius: 10px;
@@ -16,6 +16,7 @@
     height: 35px;
     vertical-align: middle;
     line-height: 35px;
+    font-family: 'Source Sans Pro', sans-serif;
     
 }
 

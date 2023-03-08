@@ -15,7 +15,7 @@
     background-color:snow
 }
 
-.search-main {
+.search-input {
     color: white;
     width: 100%;
     max-width: 31.25rem;
@@ -118,5 +118,30 @@
     top: 8%;
     right: 10%;
     display: inline-block;
+    position: absolute;
+}
+
+.actionBar{
+    display: inline-block;
+}
+.actionBar i {
+    font-size: 35px;
+    padding-left: 15px;
+    top: 10px;
+    position: relative;
+}
+
+.heart-fill {
+    font-size: 25px;
+    padding-left: 15px;
+    bottom: 0;
+    color: red;
+    position: absolute;
+}
+.heart-empty {
+    font-size: 25px;
+    padding-left: 15px;
+    bottom: 0;
+    color: red;
     position: absolute;
 }

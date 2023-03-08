@@ -32,7 +32,8 @@ const corsOptions = {
   allowedHeaders: ["Content-Type"],
 };
 app.options("/update", cors(corsOptions));
-app.options('/delete', cors(corsOptions))
+app.options("/delete", cors(corsOptions));
+app.options("/favourite", cors(corsOptions));
 
 app.get("/", (req, res) => {
   console.log("GET at /");
@@ -76,10 +77,11 @@ app.post("/upload", upload.single("fileUpload"), (req, res, next) => {
     submitDate: new Date(),
     groupID: null,
     tagObj: null,
+    isfavourite: 0,
   };
 
   const insert_query =
-    "INSERT INTO photo_main VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    "INSERT INTO photo_main VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
   connection.query(
     insert_query,
@@ -93,6 +95,7 @@ app.post("/upload", upload.single("fileUpload"), (req, res, next) => {
       imageObject.submitDate,
       imageObject.groupID,
       imageObject.tagObj,
+      imageObject.isfavourite,
     ],
     function (err, row, fields) {
       console.log(err);
@@ -124,23 +127,34 @@ app.post("/update", bpJson, (req, res) => {
     "Access-Control-Allow-Origin": "http://localhost:3000",
   });
   res.send("Done");
-  
 });
-app.post('/delete', bpJson, (req, res) => {
-  const deleteQuery = "DELETE FROM photo_main WHERE id = ?"
-  console.log(req.body)
-    connection.query(
-    deleteQuery,
-    [req.body.id],
-    function (err, row, fields){
-      console.log(err)
+
+app.post("/favourite", bpJson, (req, res) => {
+  console.log("Hit fav endpoint");
+  const updateQuery = "UPDATE photo_main SET isfavourite = ? where id = ?";
+  connection.query(
+    updateQuery,
+    [req.body.isFav, req.body.id],
+    function (err, row, fields) {
+      console.log(err);
     }
-  )
+  );
   res.set({
-    "Access-Control-Allow-Origin": "http://localhost:3000"
-  })
-  res.send('Done')
-})
+    "Access-Control-Allow-Origin": "http://localhost:3000",
+  });
+  res.send("Done.");
+});
+app.post("/delete", bpJson, (req, res) => {
+  const deleteQuery = "DELETE FROM photo_main WHERE id = ?";
+  console.log(req.body);
+  connection.query(deleteQuery, [req.body.id], function (err, row, fields) {
+    console.log(err);
+  });
+  res.set({
+    "Access-Control-Allow-Origin": "http://localhost:3000",
+  });
+  res.send("Done");
+});
 app.listen(8000, () => {
   console.log("Express listening on 8000");
 });

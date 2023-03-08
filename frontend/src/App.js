@@ -9,7 +9,7 @@ function App() {
   const [editPhotoObject, setEditPhotoObject] = useState({});
 
   useEffect(() => {
-    console.log('High level useEffect fired.')
+    console.log("High level useEffect fired.");
     fetch("http://localhost:8000/photos")
       .then((response) => response.json())
       .then((json) => {
