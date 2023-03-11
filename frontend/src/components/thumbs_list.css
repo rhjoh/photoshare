@@ -145,3 +145,14 @@
     color: red;
     position: absolute;
 }
+.albumSaveList {
+    height: 75px;
+    width: 75px;
+    position: relative;
+    background-color: snow;
+    display: inline-block;
+}
+.albumButton {
+    width:75px;
+    
+}

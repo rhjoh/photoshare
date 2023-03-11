@@ -34,6 +34,7 @@ const corsOptions = {
 app.options("/update", cors(corsOptions));
 app.options("/delete", cors(corsOptions));
 app.options("/favourite", cors(corsOptions));
+app.options("/albumsave", cors(corsOptions));
 
 app.get("/", (req, res) => {
   console.log("GET at /");
@@ -56,6 +57,24 @@ app.get("/photos", (req, res) => {
   });
 });
 
+app.get("/photos/album/:albumid", (req, res) => {
+  console.log("GET request on /photos/album/:albumid");
+  const albumID = req.params.albumid;
+  let resultObject = {};
+
+  const selectQuery = "SELECT * FROM photo_main where album_id = ?";
+  connection.query(selectQuery, [albumID], function (err, results) {
+    resultObject = results;
+    res.set({
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "http://localhost:3000",
+    });
+    res.send(resultObject);
+    res.end();
+  });
+});
+
+// Gets the filename so the client can make <img> requests.
 app.get("/photos/:filename", (req, res) => {
   const filename = req.params.filename;
   if (fs.existsSync("photos/" + filename)) {
@@ -78,10 +97,11 @@ app.post("/upload", upload.single("fileUpload"), (req, res, next) => {
     groupID: null,
     tagObj: null,
     isfavourite: 0,
+    albumID: 0,
   };
 
   const insert_query =
-    "INSERT INTO photo_main VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    "INSERT INTO photo_main VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
   connection.query(
     insert_query,
@@ -96,6 +116,7 @@ app.post("/upload", upload.single("fileUpload"), (req, res, next) => {
       imageObject.groupID,
       imageObject.tagObj,
       imageObject.isfavourite,
+      imageObject.albumID,
     ],
     function (err, row, fields) {
       console.log(err);
@@ -151,6 +172,22 @@ app.post("/delete", bpJson, (req, res) => {
     console.log(err);
   });
   res.set({
+    "Access-Control-Allow-Origin": "http://localhost:3000",
+  });
+  res.send("Done");
+});
+app.post("/albumsave", bpJson, (req, res) => {
+  console.log(req.body);
+  const updateQuery = "UPDATE photo_main SET album_id = ? where id = ?";
+  connection.query(
+    updateQuery,
+    [req.body.albumID, req.body.id],
+    function (err, row, fields) {
+      console.log(err);
+    }
+  );
+  res.set({
+    "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "http://localhost:3000",
   });
   res.send("Done");

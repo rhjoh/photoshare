@@ -7,6 +7,7 @@ function App() {
   const [photoAPICallState, setPhotoAPICallState] = useState(false);
   const [photoData, setPhotoData] = useState([]);
   const [editPhotoObject, setEditPhotoObject] = useState({});
+  const [albumData, setAlbumData] = useState([{albumName: "Album 1", id: 1}, {albumName: "Album 2", id: 2}])
 
   useEffect(() => {
     console.log("High level useEffect fired.");
@@ -20,11 +21,18 @@ function App() {
   useEffect(() => {
     console.log("sidebar clicked");
   }, [addPhotoState]);
+
   return (
     <body>
       <Sidebar
         addPhotoState={addPhotoState}
         setAddPhotoState={setAddPhotoState}
+        photoData={photoData}
+        setPhotoData={setPhotoData}
+        photoAPICallState={photoAPICallState}
+        setPhotoAPICallState={setPhotoAPICallState}
+        albumData={albumData}
+        setAlbumData={setAlbumData}
       />
 
       <MainArea
