@@ -38,6 +38,7 @@ function App() {
         addPhotoState={addPhotoState}
         photoAPICallState={photoAPICallState}
         setPhotoAPICallState={setPhotoAPICallState}
+        albumData={albumData}
       />
     </body>
   );

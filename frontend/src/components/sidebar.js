@@ -37,25 +37,23 @@ function AlbumButton(props) {
 }
 
 function Sidebar(props) {
-  // Sidebar isnt refreshing on new album 
-
   function newAlbum() {
     let x = 0;
-    let newIdValue; 
-    for(let i = 0; i < (props.albumData.length); i++){
-      if (props.albumData[i].id > x){
-        x = props.albumData[i].id
+    let newIdValue;
+    for (let i = 0; i < props.albumData.length; i++) {
+      if (props.albumData[i].id > x) {
+        x = props.albumData[i].id;
         newIdValue = x + 1;
-      } 
+      }
     }
     let newName = prompt("Name of new album: ");
-    let newAlbum = { albumName: newName, id: newIdValue};
-    let albumDataCopy = [...props.albumData, newAlbum]
-/*     albumDataCopy.push(newAlbum) 
+    let newAlbum = { albumName: newName, id: newIdValue };
+    let albumDataCopy = [...props.albumData, newAlbum];
+    /*     albumDataCopy.push(newAlbum) 
  When I use the above instead I have to wait until the next rerender. Not sure what the difference is.
  See: https://stackoverflow.com/questions/54069253/the-usestate-set-method-is-not-reflecting-a-change-immediately
 */
-    props.setAlbumData(albumDataCopy)
+    props.setAlbumData(albumDataCopy);
     console.log(props.albumData);
   }
 

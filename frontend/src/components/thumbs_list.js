@@ -83,8 +83,6 @@ function ThumbnailList(props) {
   }
   function albumSaveClicked(albumID) {
     console.log(albumID);
-    // Make a POST request to save the selectedThumbnail with an albumID.
-    // Need to assign and get the albumID dynamically, could be x number of IDs from x number of albums.
     const newAlbumBody = {
       id: selectedThumbnail.id,
       albumID: albumID,
@@ -99,6 +97,7 @@ function ThumbnailList(props) {
     }).then(() => {
       // Currently the API call saves the photo to the album but it remains stale on the client. 
       // Need to make an API call here for the updated object and edit the existing object in photoData. 
+      // Also need to change the UPDATE query to save a photo in multiple album, currently overwrites existing album assignment. 
       console.log("Sent fav request");
     });
   }
@@ -130,14 +129,15 @@ function ThumbnailList(props) {
             }
             onMouseLeave={() => setAddAlbumClicked(!addAlbumClicked)}
           >
-            <button
-              id="button-test"
-              onClick={() => albumSaveClicked(1)}
-              // Album ID hard coded for now
+            {/* Need proper styling here. Adding new buttons pushes the rest of the page down even with height: fit-content */}
+            {props.albumData.map((item, key) => (
+              <button
               className="albumButton"
-            >
-              Album1
-            </button>
+              onClick={() => albumSaveClicked(item.id)}
+              >
+                {item.albumName}
+              </button>
+            ))}
           </div>
         </div>
       </div>
