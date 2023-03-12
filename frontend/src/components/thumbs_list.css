@@ -146,8 +146,8 @@
     position: absolute;
 }
 .albumSaveList {
-    height: 75px;
     width: 75px;
+    height: fit-content;
     position: relative;
     background-color: snow;
     display: inline-block;

@@ -15,6 +15,7 @@ function MainArea(props) {
         setEditPhotoObject={props.setEditPhotoObject}
         photoAPICallState={props.photoAPICallState}
         setPhotoAPICallState={props.setPhotoAPICallState}
+        albumData={props.albumData}
       />
       {props.addPhotoState ? (
         <UploadContainer
