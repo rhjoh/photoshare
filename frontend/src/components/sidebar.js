@@ -56,6 +56,16 @@ function Sidebar(props) {
     props.setAlbumData(albumDataCopy);
     console.log(props.albumData);
   }
+  function sortByFavourites(){
+    let favouritePhotos = [];
+    props.photoData.forEach(element => {
+     if(element.isfavourite.data == 1){
+      console.log("This is fav: ", element)
+      favouritePhotos.push(element)
+      props.setPhotoData(favouritePhotos)
+     }
+    });
+  }
 
   return (
     <div className="sidebar-main">
@@ -74,7 +84,9 @@ function Sidebar(props) {
         onClick={() => props.setAddPhotoState(!props.addPhotoState)}
       />
 
-      <SidebarButton textValue={"Favourites"} iconName={"bi bi-heart"} />
+      <SidebarButton textValue={"Favourites"} iconName={"bi bi-heart"} 
+        onClick={() => sortByFavourites()}
+      />
       {props.albumData.map((item, key) => (
         <AlbumButton
           commonProps={item}
