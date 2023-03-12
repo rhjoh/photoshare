@@ -18,10 +18,6 @@ function App() {
       });
   }, [photoAPICallState]);
 
-  useEffect(() => {
-    console.log("sidebar clicked");
-  }, [addPhotoState]);
-
   return (
     <body>
       <Sidebar
