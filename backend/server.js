@@ -135,10 +135,10 @@ app.post("/update", bpJson, (req, res) => {
   console.log("POST on /update ");
   console.log(req.body);
 
-  const updateQuery = "UPDATE photo_main SET tagobj = ? WHERE id = ?";
+  const updateQuery = "UPDATE photo_main SET title = ?, description = ?, tagobj = ? WHERE id = ?";
   connection.query(
     updateQuery,
-    [req.body.imgTags, req.body.id],
+    [req.body.title, req.body.description, req.body.tagobj, req.body.id], 
     function (err, row, fields) {
       console.log(err);
     }

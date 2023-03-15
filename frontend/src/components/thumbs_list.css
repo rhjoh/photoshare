@@ -1,7 +1,9 @@
 .thumbs_main{
     background-color: #005066;
     height: auto;
-    width: calc(100% - 200px)
+    width: calc(100% - 1000px);
+    display: inline-block;
+
 }
 
 .thumbnail-dropdown {
