@@ -3,10 +3,12 @@
 import ThumbnailList from "./thumbs_list.js";
 import UploadContainer from "./upload_container.js";
 import EditContainer from "./edit_container";
+import EditMenu from "./edit_menu.js";
 import "./main-area.css";
 import { useState } from "react";
 
 function MainArea(props) {
+  const [selectedThumbnail, setSelectedThumbnail] = useState({});
   return (
     <div className="main-area-main">
       <ThumbnailList
@@ -16,6 +18,8 @@ function MainArea(props) {
         photoAPICallState={props.photoAPICallState}
         setPhotoAPICallState={props.setPhotoAPICallState}
         albumData={props.albumData}
+        selectedThumbnail={selectedThumbnail}
+        setSelectedThumbnail={setSelectedThumbnail}
       />
       {props.addPhotoState ? (
         <UploadContainer
@@ -26,10 +30,20 @@ function MainArea(props) {
           setEditPhotoObject={props.setEditPhotoObject}
         />
       ) : null}
-      <EditContainer
+      <EditMenu
+        selectedThumbnail={selectedThumbnail}
+        setSelectedThumbnail={setSelectedThumbnail}
+        photoData={props.photoData}
+        setPhotoData={props.setPhotoData}
+        setPhotoAPICallState={props.setPhotoAPICallState}
+        photoAPICallState={props.photoAPICallState}
+      />
+
+      {/* This older edit container stuff can be removed  */}
+      {/*       <EditContainer
         editPhotoObject={props.editPhotoObject}
         setEditPhotoObject={props.setEditPhotoObject}
-      />
+      /> */}
     </div>
   );
 }

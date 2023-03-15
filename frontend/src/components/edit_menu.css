@@ -1,0 +1,35 @@
+.editmenu_container {
+    width: 700px;
+    height: 500px;
+/*     line-height: 1.5; */
+    border: 1px;
+    border-color: black;
+    border-style: solid;
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+
+}
+
+.editInputArea {
+    height: 25px;
+    background-color:steelblue ;
+    margin: 0;
+    padding: 0;
+}
+
+.editInputArea p{
+    color: white;
+    margin: 0;
+    display: inline-block;
+}
+
+.editInputArea label{
+    color: white;
+}
+.editInputArea i{
+    font-size: x-large;
+    float: right;
+    display: inline-block;
+    padding-right: 10px;
+}

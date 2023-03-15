@@ -3,8 +3,6 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { useEffect, useState } from "react";
 
 function ThumbPic(props) {
-  const [optionsClicked, setOptionsClicked] = useState(false);
-
   const thumbnailClicked = (common) => {
     props.setSelectedThumbnail(common);
     console.log(props.selectedThumbnail);
@@ -58,12 +56,12 @@ function ThumbPic(props) {
 }
 
 function ThumbnailList(props) {
-  const [selectedThumbnail, setSelectedThumbnail] = useState({});
+/*   const [selectedThumbnail, setSelectedThumbnail] = useState({}); */
   const [addAlbumClicked, setAddAlbumClicked] = useState(false);
   function deleteClick() {
     console.log("Delete pressed");
     const deleteBody = {
-      id: selectedThumbnail.id,
+      id: props.selectedThumbnail.id,
     };
     console.log(deleteBody);
     fetch("http://localhost:8000/delete", {
@@ -79,12 +77,12 @@ function ThumbnailList(props) {
     });
   }
   function favouriteIconClicked() {
-    console.log("Favourite clicked: ", selectedThumbnail);
+    console.log("Favourite clicked: ", props.selectedThumbnail);
   }
   function albumSaveClicked(albumID) {
     console.log(albumID);
     const newAlbumBody = {
-      id: selectedThumbnail.id,
+      id: props.selectedThumbnail.id,
       albumID: albumID,
     };
     fetch("http://localhost:8000/albumsave", {
@@ -149,8 +147,8 @@ function ThumbnailList(props) {
           setEditPhotoObject={props.setEditPhotoObject}
           photoAPICallState={props.photoAPICallState}
           setPhotoAPICallState={props.setPhotoAPICallState}
-          selectedThumbnail={selectedThumbnail}
-          setSelectedThumbnail={setSelectedThumbnail}
+          selectedThumbnail={props.selectedThumbnail}
+          setSelectedThumbnail={props.setSelectedThumbnail}
         />
       ))}
     </div>

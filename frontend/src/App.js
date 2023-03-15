@@ -15,6 +15,8 @@ function App() {
       .then((response) => response.json())
       .then((json) => {
         setPhotoData(json);
+        // Regex to strip JSON special characters from tagobj string goes here.  
+        console.log((json[2].tagobj))
       });
   }, [photoAPICallState]);
 
@@ -33,6 +35,7 @@ function App() {
 
       <MainArea
         photoData={photoData}
+        setPhotoData={setPhotoData}
         editPhotoObject={editPhotoObject}
         setEditPhotoObject={setEditPhotoObject}
         addPhotoState={addPhotoState}
